@@ -21,11 +21,13 @@ func _ready():
 
 
 func get_resource_cost(resource_type: Resources.Types) -> int:
-	if not Resources.Levels.has(resource_type):
-		# ERROR
-		return 0
-
-	return Resources.Levels[resource_type] + 1
+	#TODO Michael: check this method
+	return 1;
+	#if not Resources.Levels.has(resource_type):
+	#	# ERROR
+	#	return 0
+#
+	#return Resources.Levels[resource_type] + 1
 
 
 func get_production_rate_per_cycle(resource_type: Resources.Types) -> int:

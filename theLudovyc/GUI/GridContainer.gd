@@ -6,7 +6,7 @@ var event_bus: EventBus
 
 @onready var bottom_container := %BottomContainer
 
-@onready var tooltip := %WidgetTooltip
+@onready var tooltip : Tooltip= %WidgetTooltip
 
 
 # Called when the node enters the scene tree for the first time.

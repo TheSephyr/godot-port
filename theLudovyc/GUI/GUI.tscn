@@ -511,10 +511,14 @@ layout_mode = 2
 
 [node name="ControlResourceWood" parent="Money+Resources/Resources" instance=ExtResource("36_hya2t")]
 layout_mode = 2
+resource_type = 2
 
 [node name="ControlResourceTextile" parent="Money+Resources/Resources" instance=ExtResource("36_hya2t")]
 layout_mode = 2
 resource_type = 1
+
+[node name="TextureButton" parent="Money+Resources/Resources/ControlResourceTextile" index="1"]
+_type = 0
 
 [node name="RichTextLabelInfo" type="RichTextLabel" parent="."]
 visible = false

@@ -1,4 +1,5 @@
 extends VBoxContainer
+class_name BuildingProducingContainer
 
 @onready var resource_in = $GridContainer/ResourceIn
 

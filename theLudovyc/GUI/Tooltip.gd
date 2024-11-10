@@ -1,4 +1,5 @@
 extends PanelContainer
+class_name Tooltip
 
 @onready var rtl := $VBoxContainer/PanelContainer/RichTextLabel
 
@@ -16,11 +17,11 @@ func set_building_info(building_id: Buildings.Ids):
 	for i in range(building_cost.size()):
 		var cost = building_cost[i]
 
-		if i > 0:
+		if (i > 0):
 			rtl.add_text(" / ")
-
+			
 		rtl.add_text(str(cost[1]) + " ")
-		rtl.add_image(Resources.Icons[cost[0]], 20)
+		rtl.add_image(Resources.get_resource_icon(cost[0]), 20)
 
 
 func set_money_production_rate_info(production_rate: int = 0):

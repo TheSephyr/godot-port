@@ -51,3 +51,4 @@ texture = ExtResource("3_8sxfq")
 
 [node name="TextureButton" parent="." instance=ExtResource("6_578q2")]
 layout_mode = 2
+_type = 0

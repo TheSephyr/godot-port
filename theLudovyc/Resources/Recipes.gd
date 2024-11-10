@@ -4,7 +4,10 @@ class_name Recipes
 # Needed 1 resource input, tick(s) and Worker(s) to produce 1 resource output
 enum Datas { Input, Ticks, Workers }
 
-const datas = {Resources.Types.Wood: {Datas.Input: -1, Datas.Ticks: 1, Datas.Workers: 4}}
+const datas: Dictionary = {
+	Resources.Types.Wood: {Datas.Input: -1, Datas.Ticks: 1, Datas.Workers: 2},
+	Resources.Types.Board: {Datas.Input: Resources.Types.Wood, Datas.Ticks: 2, Datas.Workers: 2},
+}
 
 
 static func get_recipe_input(resource_type: Resources.Types) -> int:

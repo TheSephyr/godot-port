@@ -8,7 +8,7 @@ extends VBoxContainer
 
 @onready var confirmation_dialog := %ConfirmationDialog
 
-const confirmation_text = "Are you sure you want to demolish this building?"
+const confirmation_text: String = "Are you sure you want to demolish this building?"
 
 
 func _ready():
@@ -16,7 +16,7 @@ func _ready():
 
 
 func update_infos(building: Building2D):
-	var building_id = building.building_id
+	var building_id: Buildings.Ids = building.building_id
 
 	name_label.text = Buildings.get_building_name(building_id)
 

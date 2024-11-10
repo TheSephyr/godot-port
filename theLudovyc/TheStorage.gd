@@ -1,18 +1,18 @@
 extends Node
 class_name TheStorage
 
-var storage = {}
+var storage: Dictionary = {}
 
 @onready var event_bus = $"../EventBus"
 
-@onready var the_factory := $"../TheFactory"
+@onready var the_factory: TheFactory = $"../TheFactory"
 
 @onready var the_market := $"../TheMarket"
 
 @onready var the_ticker := $"../TheTicker"
 
 
-func add_resource(resource_type: Resources.Types, amount: int):
+func add_resource(resource_type: Resources.Types, amount: int) -> void:
 	if sign(amount) < 0 and abs(amount) > storage[resource_type]:
 		push_error(name, "Error: cannot consume " + str(amount) + " of " + str(resource_type))
 
@@ -50,18 +50,8 @@ func try_to_sell_resource(resource_type: Resources.Types, amount: int) -> bool:
 	return false
 
 
-func update_global_production_rate(resource_type: Resources.Types):
-	var factory_per_cycle = (
-		the_factory.get_production_rate_per_tick(resource_type) * the_ticker.cycle_cooldown
-	)
-
-	event_bus.resource_prodution_rate_updated.emit(
-		resource_type, factory_per_cycle + the_market.get_production_rate_per_cycle(resource_type)
-	)
-
-
 func has_resources_to_construct_building(building_id: Buildings.Ids) -> bool:
-	var building_cost = Buildings.get_building_cost(building_id)
+	var building_cost: Array = Buildings.get_building_cost(building_id)
 
 	if building_cost.is_empty():
 		return true

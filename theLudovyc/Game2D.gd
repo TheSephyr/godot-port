@@ -9,11 +9,11 @@ class_name Game2D
 
 @onready var node_entities := %Entities
 
-@onready var the_storage := $TheStorage
+@onready var the_storage: TheStorage = $TheStorage
 @onready var the_bank := $TheBank
 @onready var event_bus := $EventBus
 
-@onready var the_factory := $TheFactory
+@onready var the_factory: TheFactory = $TheFactory
 
 @onready var gui := $GUI
 @onready var pause_menu := %PauseMenu
@@ -70,8 +70,8 @@ func _ready():
 	# add some initial resources
 	the_bank.money = 100
 
-	the_storage.add_resource(Resources.Types.Wood, 2)
 	the_storage.add_resource(Resources.Types.Textile, 16)
+	the_storage.add_resource(Resources.Types.Board, 20)
 
 	pass  # Replace with function body.
 
@@ -168,10 +168,7 @@ func _process(delta):
 					the_factory.population_increase(amount)
 
 				Buildings.Types.Producing:
-					the_factory.add_workers(
-						Buildings.get_produce_resource(building_id),
-						Buildings.get_max_workers(building_id)
-					)
+					the_factory.add_workers(cursor_entity)
 
 			if trees_to_destroy_final_cost > 0:
 				gui.set_rtl_visibility(false)
@@ -199,7 +196,7 @@ func _process(delta):
 
 
 func instantiate_building(building_id: Buildings.Ids) -> Building2D:
-	var instance = Buildings_Scenes[building_id].instantiate() as Building2D
+	var instance = Buildings_Scenes[building_id].instantiate()
 
 	node_entities.add_child(instance)
 
@@ -248,9 +245,7 @@ func _on_EventBus_ask_demolish_current_building():
 			the_factory.population_decrease(amount)
 
 		Buildings.Types.Producing:
-			the_factory.rem_workers(
-				Buildings.get_produce_resource(building_id), Buildings.get_max_workers(building_id)
-			)
+			the_factory.rem_workers(current_selected_building)
 		_:
 			pass
 

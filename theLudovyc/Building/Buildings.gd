@@ -1,27 +1,28 @@
 extends Object
 class_name Buildings
 
-enum Types { Placeholder, Warehouse, Residential, Producing }
+enum Types { Placeholder, Warehouse, Residential, Producing, Producing_Collecting }
 
 enum Ids { Warehouse, Tent, Lumberjack }
 
-enum Datas { Name, Type, Cost, Produce, Max_Workers }
+enum Datas { Name, Type, Cost, Collect, Produce, Max_Workers }
 
-const datas = {
+const datas: Dictionary = {
 	Ids.Warehouse: {Datas.Name: &"Warehouse", Datas.Type: Types.Warehouse},
 	Ids.Tent:
 	{
 		Datas.Name: &"Tent",
 		Datas.Type: Types.Residential,
-		Datas.Cost: [[Resources.Types.Wood, 1], [Resources.Types.Textile, 1]],
+		Datas.Cost: [[Resources.Types.Board, 1], [Resources.Types.Textile, 1]],
 		Datas.Max_Workers: 4
 	},
 	Ids.Lumberjack:
 	{
 		Datas.Name: &"Lumberjack",
 		Datas.Type: Types.Producing,
-		Datas.Cost: [[Resources.Types.Wood, 1], [Resources.Types.Textile, 1]],
-		Datas.Produce: Resources.Types.Wood,
+		Datas.Cost: [[Resources.Types.Board, 1], [Resources.Types.Textile, 1]],
+		Datas.Collect: Resources.Types.Wood,
+		Datas.Produce: Resources.Types.Board,
 		Datas.Max_Workers: 4
 	}
 }

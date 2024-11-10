@@ -1,11 +1,12 @@
 extends TextureButton
+class_name ResourceButton
 
 @export var _type: Resources.Types
 
 
 func set_resource_icon(type: Resources.Types):
-	if Resources.Icons.has(type):
-		$TextureRect.texture = Resources.Icons[type]
+	if Resources.has_rescource(type):
+		$TextureRect.texture = Resources.get_resource_icon(type)
 
 
 # Called when the node enters the scene tree for the first time.
