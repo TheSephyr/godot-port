@@ -30,7 +30,3 @@ static func has_rescource(resource_type: Types) -> bool:
 static func get_resource_icon(resource_type: Types) -> Texture2D:
 	return AllResources.get(resource_type)[2]
 
-	
-static func get_rescources_level(resource_type: Types):
-	
-	return 0;

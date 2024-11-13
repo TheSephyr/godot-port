@@ -1,6 +1,8 @@
 extends Node
 class_name Game2D
 
+const uuid_util = preload('res://addons/uuid/uuid.gd')
+
 @onready var rtl := $CanvasLayer/RichTextLabel
 
 @onready var tm := %TileMap
@@ -196,8 +198,10 @@ func _process(delta):
 
 
 func instantiate_building(building_id: Buildings.Ids) -> Building2D:
-	var instance = Buildings_Scenes[building_id].instantiate()
-
+	var instance: Building2D = Buildings_Scenes[building_id].instantiate()
+	var uuid: String = uuid_util.v4()
+	instance.id = uuid
+	
 	node_entities.add_child(instance)
 
 	# TODO

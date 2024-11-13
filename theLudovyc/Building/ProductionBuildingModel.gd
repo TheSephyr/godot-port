@@ -1,10 +1,8 @@
-@tool
-extends Building2D
-class_name ProductionBuilding
+extends BuildingModel
+class_name ProductionBuildingModel
 
 var input_resource_amount : int = 0
 var output_resource_amount : int = 0
-
 
 func singleTick():
 	current_ticks = current_ticks + 1
