@@ -4,13 +4,12 @@ extends PanelContainer
 
 @onready var label_amount := $HBoxContainer/PanelContainer/HBoxContainer/LabelAmount
 @onready var label_production_rate := $HBoxContainer/PanelContainer/HBoxContainer/LabelProductionRate
-@onready var texture_button: ResourceButton = $TextureButton
+@onready var texture_button := $TextureButton
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	texture_button.set_resource_icon(resource_type)
-	
+	$TextureButton.set_resource_icon(resource_type)
 
 	var current_node = get_tree().current_scene
 

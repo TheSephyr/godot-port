@@ -17,7 +17,7 @@ func set_building_info(building_id: Buildings.Ids):
 	for i in range(building_cost.size()):
 		var cost = building_cost[i]
 
-		if (i > 0):
+		if i > 0:
 			rtl.add_text(" / ")
 			
 		rtl.add_text(str(cost[1]) + " ")

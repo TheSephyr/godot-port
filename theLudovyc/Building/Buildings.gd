@@ -1,11 +1,11 @@
 extends Object
 class_name Buildings
 
-enum Types { Placeholder, Warehouse, Residential, Producing, Producing_Collecting }
+enum Types { Placeholder, Warehouse, Residential, Producing }
 
-enum Ids { Warehouse, Tent, Lumberjack }
+enum Ids { Warehouse, Tent, Lumberjack, Sawmill }
 
-enum Datas { Name, Type, Cost, Collect, Produce, Max_Workers }
+enum Datas { Name, Type, Cost, Need, Produce, Max_Workers }
 
 const datas: Dictionary = {
 	Ids.Warehouse: {Datas.Name: &"Warehouse", Datas.Type: Types.Warehouse},
@@ -13,15 +13,23 @@ const datas: Dictionary = {
 	{
 		Datas.Name: &"Tent",
 		Datas.Type: Types.Residential,
-		Datas.Cost: [[Resources.Types.Board, 1], [Resources.Types.Textile, 1]],
+		Datas.Cost: [[Resources.Types.Wood, 1], [Resources.Types.Textile, 1]],
 		Datas.Max_Workers: 4
 	},
 	Ids.Lumberjack:
 	{
 		Datas.Name: &"Lumberjack",
 		Datas.Type: Types.Producing,
-		Datas.Cost: [[Resources.Types.Board, 1], [Resources.Types.Textile, 1]],
-		Datas.Collect: Resources.Types.Wood,
+		Datas.Cost: [[Resources.Types.Wood, 1], [Resources.Types.Textile, 1]],
+		Datas.Produce: Resources.Types.Wood,
+		Datas.Max_Workers: 4
+	},
+	Ids.Sawmill:
+	{
+		Datas.Name: &"Sawmill",
+		Datas.Type: Types.Producing,
+		Datas.Cost: [[Resources.Types.Wood, 1], [Resources.Types.Textile, 1]],
+		Datas.Need: Resources.Types.Wood,
 		Datas.Produce: Resources.Types.Board,
 		Datas.Max_Workers: 4
 	}
@@ -60,3 +68,9 @@ static func get_max_workers(building_id: Buildings.Ids) -> int:
 	if not datas.has(building_id):
 		return -1
 	return datas[building_id].get(Datas.Max_Workers, -1)
+
+
+static func get_need_resource(building_id: Buildings.Ids) -> Resources.Types:
+	if not datas.has(building_id):
+		return -1
+	return datas[building_id].get(Datas.Produce, -1)

@@ -153,7 +153,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_q0br5")
 
 [node name="MenuContainer" type="TabContainer" parent="Widget/BottomContainer/PanelContainer"]
 layout_mode = 2
-current_tab = 2
+current_tab = 1
 clip_tabs = false
 tabs_visible = false
 script = ExtResource("5_sjwej")
@@ -199,7 +199,6 @@ layout_mode = 2
 size_flags_horizontal = 6
 
 [node name="BuildGridContainer" type="GridContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer"]
-visible = false
 layout_mode = 2
 mouse_filter = 2
 columns = 4
@@ -222,7 +221,17 @@ texture_hover = ExtResource("10_jbw0d")
 script = ExtResource("8_i5i22")
 building_id = 2
 
+[node name="BuildSawmill" type="TextureButton" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildGridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_8yekw")
+texture_pressed = ExtResource("9_kn7dp")
+texture_hover = ExtResource("10_jbw0d")
+flip_h = true
+script = ExtResource("8_i5i22")
+building_id = 3
+
 [node name="BuildingContainer" type="VBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("18_nngab")
 metadata/_tab_index = 2
@@ -511,14 +520,15 @@ layout_mode = 2
 
 [node name="ControlResourceWood" parent="Money+Resources/Resources" instance=ExtResource("36_hya2t")]
 layout_mode = 2
-resource_type = 2
+resource_type = 1
 
 [node name="ControlResourceTextile" parent="Money+Resources/Resources" instance=ExtResource("36_hya2t")]
 layout_mode = 2
 resource_type = 1
 
-[node name="TextureButton" parent="Money+Resources/Resources/ControlResourceTextile" index="1"]
-_type = 0
+[node name="ControlResourceBoard" parent="Money+Resources/Resources" instance=ExtResource("36_hya2t")]
+layout_mode = 2
+resource_type = 2
 
 [node name="RichTextLabelInfo" type="RichTextLabel" parent="."]
 visible = false
@@ -583,3 +593,4 @@ unique_name_in_owner = true
 
 [editable path="Money+Resources/ControlMoney"]
 [editable path="Money+Resources/Resources/ControlResourceTextile"]
+[editable path="Money+Resources/Resources/ControlResourceBoard"]

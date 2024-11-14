@@ -23,7 +23,8 @@ const uuid_util = preload('res://addons/uuid/uuid.gd')
 const Buildings_Scenes = {
 	Buildings.Ids.Warehouse: preload("res://theLudovyc/Building/Warehouse.tscn"),
 	Buildings.Ids.Tent: preload("res://theLudovyc/Building/Residential.tscn"),
-	Buildings.Ids.Lumberjack: preload("res://theLudovyc/Building/Lumberjack.tscn")
+	Buildings.Ids.Lumberjack: preload("res://theLudovyc/Building/Lumberjack.tscn"),
+	Buildings.Ids.Sawmill: preload("res://theLudovyc/Building/Sawmill.tscn")
 }
 
 const Trees_Destroy_Cost = 1
@@ -72,6 +73,7 @@ func _ready():
 	# add some initial resources
 	the_bank.money = 100
 
+	the_storage.add_resource(Resources.Types.Wood, 20)
 	the_storage.add_resource(Resources.Types.Textile, 16)
 	the_storage.add_resource(Resources.Types.Board, 20)
 

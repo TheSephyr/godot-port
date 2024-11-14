@@ -81,3 +81,7 @@ func recover_building_construction(building_id: Buildings.Ids):
 
 	for cost in building_cost:
 		add_resource(cost[0], cost[1])
+		
+	
+func has_enough_resources(amount: int, resource_type: Resources.Types) -> bool:
+	return amount > storage.get(resource_type, 0)

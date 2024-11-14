@@ -20,7 +20,7 @@ var waiting_line_buildings: Array[BuildingModel] = []
 func add_workers(building: Building2D) -> void:
 	print_debug("Adding workers")
 	var uuid: String =   uuid_util.v4()
-	var building_model = ProductionBuildingModel.new(building.building_id, uuid)
+	var building_model: ProductionBuildingModel = ProductionBuildingModel.new(building.building_id, uuid)
 	building.id = uuid
 	add_workers_to_model(building_model)
 
@@ -92,9 +92,7 @@ func _on_TheTicker_tick():
 	for single_building in buildings:
 		if is_instance_of(single_building, ProductionBuildingModel):
 			var production_building: ProductionBuildingModel = single_building as ProductionBuildingModel
-			production_building.singleTick()
-			var amount: int = production_building.sendProducedItems()
-			storage.add_resource(production_building.getProducedItemType(), amount)
+			production_building.singleTick(storage)
 			
 			
 func find_building_by_id(id: String) -> BuildingModel:
