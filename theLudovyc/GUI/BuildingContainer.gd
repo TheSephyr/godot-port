@@ -8,7 +8,7 @@ extends VBoxContainer
 
 @onready var confirmation_dialog := %ConfirmationDialog
 
-const confirmation_text: String = "Are you sure you want to demolish this building?"
+const confirmation_text = "Are you sure you want to demolish this building?"
 
 
 func _ready():
