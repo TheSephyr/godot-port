@@ -14,9 +14,12 @@ func singleTick(storage: TheStorage):
 	
 func collect(storage: TheStorage):
 	var amount: int = 1
-	if storage.has_enough_resources(amount, getNeedItemType()):
-		storage.add_resource(getNeedItemType(), -amount)
+	if (getNeedItemType() == Resources.Types.None):
 		input_resource_amount = input_resource_amount + amount
+	else:
+		if storage.has_enough_resources(amount, getNeedItemType()):
+			storage.add_resource(getNeedItemType(), -amount)
+			input_resource_amount = input_resource_amount + amount
 	
 	
 func produce():
@@ -35,4 +38,4 @@ func getProducedItemType() -> Resources.Types:
 	return Buildings.get_produce_resource(building_id)
 
 func getNeedItemType() -> Resources.Types:
-	return Buildings.get_produce_resource(building_id)
+	return Buildings.get_need_resource(building_id)

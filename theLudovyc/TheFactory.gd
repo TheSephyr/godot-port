@@ -8,7 +8,7 @@ const uuid_util = preload('res://addons/uuid/uuid.gd')
 @onready var event_bus: EventBus = $"../EventBus"
 
 
-var buildings: Array[BuildingModel] = []
+var buildings: Dictionary = {}
 
 var workers := 0:
 	set(value):
@@ -18,7 +18,6 @@ var workers := 0:
 var waiting_line_buildings: Array[BuildingModel] = []
 
 func add_workers(building: Building2D) -> void:
-	print_debug("Adding workers")
 	var uuid: String =   uuid_util.v4()
 	var building_model: ProductionBuildingModel = ProductionBuildingModel.new(building.building_id, uuid)
 	building.id = uuid
@@ -26,20 +25,17 @@ func add_workers(building: Building2D) -> void:
 
 	
 func add_workers_to_model(building_model: BuildingModel):
-	print_debug("Adding workers to model")
-	print_debug(game.population)
-	print_debug(workers)
 	if (game.population - workers) > 0:
 		var available_worker: int = game.population - workers
 		var addedWorkers: int = building_model.add_worker(available_worker)
 		workers = workers + addedWorkers
-		buildings.append(building_model)
+		buildings[building_model.id] = building_model
 	else:
 		waiting_line_buildings.append(building_model)
 
 		
 func rem_workers(building: Building2D) -> void:
-	var building_model: BuildingModel = find_building_by_id(building.id)
+	var building_model: BuildingModel = buildings.get(building.id)
 	if building_model != null:
 		var removed_workers: int = building_model.rem_all_worker()
 		workers = workers - removed_workers;
@@ -50,9 +46,7 @@ func rem_workers(building: Building2D) -> void:
 				waiting_line_buildings.remove_at(i)
 				return
 		
-		if buildings.has(building):
-			var position: int = buildings.find(building)
-			buildings.remove_at(position)
+		buildings.erase(building.id)
 
 
 
@@ -71,14 +65,14 @@ func population_increase(amount: int):
 			if population_pool <= 0:
 				break
 		else:
-			i = i + 1
+			i += 1
 
 
 func population_decrease(amount: int):
 	var population_pool: int = amount
 	
 	while not buildings.is_empty():
-		var building: BuildingModel = buildings.pick_random()
+		var building: BuildingModel = buildings.values().pick_random()
 		var current_workes: int = building.current_worker
 		if current_workes > 0:
 			waiting_line_buildings.push_back(building)
@@ -89,15 +83,8 @@ func population_decrease(amount: int):
 
 
 func _on_TheTicker_tick():
-	for single_building in buildings:
+	for single_building in buildings.values():
 		if is_instance_of(single_building, ProductionBuildingModel):
 			var production_building: ProductionBuildingModel = single_building as ProductionBuildingModel
 			production_building.singleTick(storage)
 			
-			
-func find_building_by_id(id: String) -> BuildingModel:
-	for building_model in buildings:
-		if building_model.id == id:
-			return building_model
-	push_error("No building model for given id could be found: " + id)
-	return null

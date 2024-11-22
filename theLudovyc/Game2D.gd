@@ -201,8 +201,7 @@ func _process(delta):
 
 func instantiate_building(building_id: Buildings.Ids) -> Building2D:
 	var instance: Building2D = Buildings_Scenes[building_id].instantiate()
-	var uuid: String = uuid_util.v4()
-	instance.id = uuid
+	instance.id = uuid_util.v4()
 	
 	node_entities.add_child(instance)
 

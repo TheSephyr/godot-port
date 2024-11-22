@@ -524,11 +524,11 @@ resource_type = 1
 
 [node name="ControlResourceTextile" parent="Money+Resources/Resources" instance=ExtResource("36_hya2t")]
 layout_mode = 2
-resource_type = 1
+resource_type = 2
 
 [node name="ControlResourceBoard" parent="Money+Resources/Resources" instance=ExtResource("36_hya2t")]
 layout_mode = 2
-resource_type = 2
+resource_type = 3
 
 [node name="RichTextLabelInfo" type="RichTextLabel" parent="."]
 visible = false

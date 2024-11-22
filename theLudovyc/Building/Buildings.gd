@@ -21,6 +21,7 @@ const datas: Dictionary = {
 		Datas.Name: &"Lumberjack",
 		Datas.Type: Types.Producing,
 		Datas.Cost: [[Resources.Types.Wood, 1], [Resources.Types.Textile, 1]],
+		Datas.Need: Resources.Types.None,
 		Datas.Produce: Resources.Types.Wood,
 		Datas.Max_Workers: 4
 	},
@@ -73,4 +74,4 @@ static func get_max_workers(building_id: Buildings.Ids) -> int:
 static func get_need_resource(building_id: Buildings.Ids) -> Resources.Types:
 	if not datas.has(building_id):
 		return -1
-	return datas[building_id].get(Datas.Produce, -1)
+	return datas[building_id].get(Datas.Need, -1)

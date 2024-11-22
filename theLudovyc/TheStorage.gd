@@ -84,4 +84,4 @@ func recover_building_construction(building_id: Buildings.Ids):
 		
 	
 func has_enough_resources(amount: int, resource_type: Resources.Types) -> bool:
-	return amount > storage.get(resource_type, 0)
+	return amount < storage.get(resource_type, 0)
